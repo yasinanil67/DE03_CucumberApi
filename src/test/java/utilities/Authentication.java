@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static stepdefinitions.CreateUserBySeleniumStepDefinitions.email;
+import static stepdefinitions.CreateUserBySeleniumStepDefinitions.password;
 
 public class Authentication {
 
@@ -18,7 +19,7 @@ public class Authentication {
 
         if (email != null) {//Eğer selenium ile user oluşturulursa email null kalmaz.
             payload.put("email", email);
-            payload.put("password", "Password.123");
+            payload.put("password", password);
         } else {//User oluşturulmadıysa clarusway kullanıcısı ile token alınacak
             payload.put("email", "clarusway2024@hotmail.com");
             payload.put("password", "Clarusway.123");

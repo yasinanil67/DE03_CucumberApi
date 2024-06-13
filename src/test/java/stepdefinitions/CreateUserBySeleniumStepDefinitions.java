@@ -14,6 +14,7 @@ public class CreateUserBySeleniumStepDefinitions {
     CLContactsPage clContactsPage = new CLContactsPage();
 
     public static String email;//Athentication için kullanılacak email
+    public static String password;//Athentication için kullanılacak password
 
     @Given("user goes to {string}")
     public void user_goes_to(String url) {
@@ -43,7 +44,10 @@ public class CreateUserBySeleniumStepDefinitions {
 
     @When("user enters password")
     public void user_enters_password() {
-        clAddUserPage.password.sendKeys("Password.123");
+
+        password = Faker.instance().internet().password();//Athentication için kullanılacak password'ü burada atıyorum.
+        clAddUserPage.password.sendKeys(password);
+
     }
 
     @When("user clicks on submit button")

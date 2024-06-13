@@ -11,7 +11,7 @@ public class ContactListBaseUrl {
 
     public static RequestSpecification spec;
 
-    @Before("@Api")//Her @Api scenariosu öncesi çalışır
+    @Before("@Api")//Her @Api scenariosu öncesi çalışır --> import io.cucumber.java.Before;
     public void setSpec() {
         spec = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)

@@ -13,14 +13,16 @@ import utilities.ObjectMapperUtils;
 import static base_urls.ContactListBaseUrl.spec;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
+import static stepdefinitions.CreateUserBySeleniumStepDefinitions.email;
+import static stepdefinitions.CreateUserBySeleniumStepDefinitions.password;
 
 public class UpdateUserByApiStepDefinitions {
 
     UserPojo expectedData;
     Response response;
 
-    @Given("set the url for put request")
-    public void setTheUrlForPutRequest() {
+    @Given("set the url for patch request")
+    public void setTheUrlForPatchRequest() {
         //https://thinking-tester-contact-list.herokuapp.com/users/me
         spec.pathParams("first", "users", "second", "me");
 
@@ -36,7 +38,9 @@ public class UpdateUserByApiStepDefinitions {
                     "password": "Tom.123"
                 }""";
         expectedData = ObjectMapperUtils.jsonToJava(json, UserPojo.class);
-        expectedData.setEmail(Faker.instance().internet().emailAddress());
+        email = Faker.instance().internet().emailAddress(); //Yeni mail, eski mail'in üzerine yazılıyor.
+        expectedData.setEmail(email); //"test2@fake.com" olarak belirtilen sabit email'e faker'dan gele nyeni mail assign ediliyor.
+        password = expectedData.getPassword();//Yeni password, eski password'ün üzerine yazılıyor.
         System.out.println("expectedData = " + expectedData);
 
 
@@ -60,4 +64,6 @@ public class UpdateUserByApiStepDefinitions {
         assertEquals(expectedData.getEmail(), actualData.getEmail());
 
     }
+
+
 }

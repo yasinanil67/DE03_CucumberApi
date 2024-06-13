@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = {"stepdefinitions", "base_urls"},//Java kodlarının çalışacağı package'lar.
-        tags = "@End2End",
+        tags = "@Contact",
         dryRun = false// dryRun = true yapıldığında test çalışmaz sadece eksik step definition methodları tespit edilir.
 
 )
